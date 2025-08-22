@@ -2,7 +2,7 @@
   <div class="container">
     <header class="header">
 <!--      <img src="/path-to-logo.png" alt="National Logo" class="logo" />-->
-      <h1 class="title">第三方白利用识别</h1>
+      <h1 class="title">银狐-第三方商业软件识别</h1>
     </header>
 
     <main>
@@ -32,6 +32,41 @@ import Loader from "./components/ProcessLoader.vue";
 import ProcessItem from "./components/ProcessItem.vue";
 import ErrorMessage from "./components/ProcessErrorMessage.vue";
 
+// 测试数据
+const mockData = `[
+  {
+    "processName": ["wrdlv4.exe", "winrdlv3.exe"],
+    "describe": "ipguard",
+    "isExist": "No",
+    "pid": "",
+    "connections": null
+  },
+  {
+    "processName": ["NSecRTS.exe"],
+    "describe": "Nsec(ping32)",
+    "isExist": "No",
+    "pid": "",
+    "connections": null
+  },
+  {
+    "processName": ["poda64.exe"],
+    "describe": "固信",
+    "isExist": "No",
+    "pid": "",
+    "connections": null
+  },
+  {
+    "processName": ["ClashX"],
+    "describe": "mac下测试使用",
+    "isExist": "True",
+    "pid": "902",
+    "connections": [
+      "223.5.5.5:443:ESTABLISHED [China-Hangzhou]",
+      "113.240.72.99:443:ESTABLISHED [China-Qingyuan]"
+    ]
+  }
+]`;
+
 export default {
   components: {
     Loader,
@@ -50,8 +85,15 @@ export default {
       this.isLoading = true;
       this.errorMessage = "";
       try {
-        const result = await window.checkProcesses(); // 调用 Webview 绑定的 Go 函数
-        this.processes = JSON.parse(result);
+        if (process.env.NODE_ENV === "development") {
+          // 开发环境：使用测试数据
+          this.processes = JSON.parse(mockData);
+          console.log(JSON.parse(mockData));
+        } else {
+          // 生产环境：调用 Go 接口
+          const result = await window.checkProcesses(); // 调用 Webview 绑定的 Go 函数
+          this.processes = JSON.parse(result);
+        }
       } catch (error) {
         this.errorMessage = "加载数据的时候发生错误。。";
       } finally {
@@ -61,6 +103,7 @@ export default {
   },
 };
 </script>
+
 
 <style>
 /* 主容器 */
