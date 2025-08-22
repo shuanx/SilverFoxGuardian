@@ -1,0 +1,20 @@
+{
+  "remote_control":[
+    {
+      "processName": ["wrdlv4.exe", "winrdlv3.exe"],
+      "describe": "ipguard"
+    },
+    {
+      "processName": ["NSecRTS.exe"],
+      "describe": "Nsec(ping32)"
+    },
+    {
+      "processName": ["poda64.exe"],
+      "describe": "固信"
+    },
+    {
+      "processName": ["ClashX"],
+      "describe": "mac下测试使用"
+    }
+  ]
+}
