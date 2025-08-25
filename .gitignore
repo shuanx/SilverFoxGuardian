@@ -15,3 +15,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.iml
+
+# admin管理员运行的权限
+rsrc.syso.bak

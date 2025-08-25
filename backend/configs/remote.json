@@ -13,6 +13,14 @@
       "describe": "固信"
     },
     {
+      "processName": ["pdq-connect-agent.exe"],
+      "describe": "PDQAgent"
+    },
+    {
+      "processName": ["WerFault.exe", "GotoHTTP.exe"],
+      "describe": "GotoHTTP"
+    },
+    {
       "processName": ["ClashX"],
       "describe": "mac下测试使用"
     }
